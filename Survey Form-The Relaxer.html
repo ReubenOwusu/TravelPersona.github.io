@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css"> 
+         <h3>The Relaxer</h3>
+          <img src="https://images.pexels.com/photos/2535206/pexels-photo-2535206.jpeg" alt="Hong Kong Market" class="result-image" width="350px" height="250px">
+        </head>
+        <body class="relax-background">
+           <fieldset class="cardimage">
+    <div class="containerimage">
+      <p class="result-description">You travel to unwind, recharge, and escape the noise. A quiet beach, a comfy resort, or a peaceful view is all you need to feel alive again. For you, rest isn't a luxury — it's the destination.</p>
+    </div>
+  </fieldset>
+            <form action="Survery Form.html" id="survey_back">
+ <input type="submit" value="Return to Homepage" >
+</form>
+ <script>
+    document.getElementById('survey_back').addEventListener('submit', function(e) {
+      e.preventDefault(); // Stop the default submit
+ localStorage.removeItem('q1');
+    localStorage.removeItem('q2');
+    localStorage.removeItem('q3');
+    localStorage.removeItem('q4');
+    localStorage.removeItem('q5');
+    localStorage.removeItem('q6');
+    localStorage.removeItem('q7');
+    window.location.href = 'Survey Form.html';
+
+      // Redirect to homepage
+      window.location.href = "Survey Form.html";
+    });
+  </script>
+
+</body>
+</html>

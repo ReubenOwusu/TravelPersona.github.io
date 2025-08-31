@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css"> 
+         <h3>The Culture Connoisseur</h3>
+         <img src="https://images.pexels.com/photos/1745747/pexels-photo-1745747.jpeg" alt="Hong Kong Market" class="result-image" width="600px" height="400px">
+        </head>
+        <body class="culture-background">
+        
+  <fieldset class="cardimage">
+    <div class="containerimage">
+      <p class="result-description">
+        You're a traveler of taste, always seeking depth in new places. From savoring local dishes
+        to exploring art, history, and tradition, you immerse yourself fully in the world's cultures.
+        Every trip is a chance to learn, connect, and enrich your perspective.
+      </p>
+    </div>
+  </fieldset>
+            <form action="Survey Form.html" id="survey_back">
+ <input type="submit"  value="Return to Homepage">
+ </form>
+  <script>
+    document.getElementById('survey_back').addEventListener('submit', function(e) {
+      e.preventDefault(); // Stop the default submit
+ localStorage.removeItem('q1');
+    localStorage.removeItem('q2');
+    localStorage.removeItem('q3');
+    localStorage.removeItem('q4');
+    localStorage.removeItem('q5');
+    localStorage.removeItem('q6');
+    localStorage.removeItem('q7');
+    window.location.href = 'Survey Form.html';
+
+      // Redirect to homepage
+      window.location.href = "Survey Form.html";
+    });
+  </script>
+</body>
+</html>

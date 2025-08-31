@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Finding Your Result...</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h2>Calculating Your Result...</h2>
+  <p>Please wait a moment.</p>
+
+  <script>
+    // Gather all answers
+    const counts = {};
+
+    for (let i = 1; i <= 7; i++) {
+      const ans = localStorage.getItem(`q${i}`);
+      if (ans) {
+        counts[ans] = (counts[ans] || 0) + 1;
+      }
+    }
+
+    // Find highest
+    let maxType = null;
+    let maxCount = 0;
+    for (const [type, count] of Object.entries(counts)) {
+      if (count > maxCount) {
+        maxCount = count;
+        maxType = type;
+      }
+    }
+
+    // Redirect based on type
+    if (maxType) {
+      switch (maxType) {
+        case 'thrill-seeker':
+          window.location.href = "Survey Form-The Thrill-Seeker.html";
+          break;
+        case 'relaxer':
+          window.location.href = "Survey Form-The Relaxer.html";
+          break;
+        case 'culture':
+          window.location.href = "Survey Form-The Culture Connoisseur.html";
+          break;
+        case 'explorer':
+          window.location.href = "Survey Form-The Explorer.html";
+          break;
+          case 'planner':
+          window.location.href = "Survey Form-The Planner.html";
+          break;
+        default:
+          window.location.href = "result_generic.html";
+      }
+    } else {
+      // fallback if nothing answered
+      document.body.innerHTML = '<h2>No answers found. Please retake the survey.</h2>';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css"> 
+         <h3>The Planner</h3>
+         <img src="https://images.pexels.com/photos/4905089/pexels-photo-4905089.jpeg" alt="Hong Kong Market" class="result-image" width="600px" height="400px">
+        </head>
+        <body class="planner-background">
+           <fieldset class="cardimage">
+    <div class="containerimage">
+      <p class="result-description">Precision is your passport. You map it out, book ahead, and know where the best spots are before the plane even lands. For you, the joy is in the details — maximizing every moment so the journey runs as smoothly as your spreadsheet.</p>
+    </div>
+  </fieldset>
+            <form action="Survery Form.html" id="survey_back">
+ <input type="submit"  value="Return to Homepage" >
+</form>
+ <script>
+    document.getElementById('survey_back').addEventListener('submit', function(e) {
+      e.preventDefault(); // Stop the default submit
+ localStorage.removeItem('q1');
+    localStorage.removeItem('q2');
+    localStorage.removeItem('q3');
+    localStorage.removeItem('q4');
+    localStorage.removeItem('q5');
+    localStorage.removeItem('q6');
+    localStorage.removeItem('q7');
+    window.location.href = 'Survey Form.html';
+      // Redirect to homepage
+      window.location.href = "Survey Form.html";
+    });
+  </script>
+</body>
+</html>

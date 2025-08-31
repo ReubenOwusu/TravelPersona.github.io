@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css"> 
+        <div class="header">
+            <h3>Food & Dining</h3>
+            </div>
+
+         <div class="progress-bar">
+  <div class="step" id="step1" data-title="Travel Frequency & Style" data-file="Survey Form Q1.html"></div>
+  <div class="step" id="step2" data-title="Trip Planning Preferences" data-file="Survey Form Q2.html"></div>
+  <div class="step" id="step3" data-title="Destination Choices" data-file="Survey Form Q3.html"> </div>
+  <div class="step" id="step4" data-title="Packing & Preparation" data-file="Survey Form Q4.html"> </div>
+  <div class="step" id="step5" data-title="On-the-Road Habits" data-file="Survey Form Q5.html"> </div>
+  <div class="step" id="step6" data-title="Sustainability & Responsibility" data-file="Survey Form Q6.html"></div>
+  <div class="step" id="step7" data-title="Leisure & Activities" data-file="Survey Form Q7.html"> </div>
+</div>
+
+        </head>
+        <body class="q6-img">
+           <fieldset class="content">
+           <div class="container">
+           <h4>When it comes to food while traveling, what excites you the most?</h4>
+           <input type="radio"  name="sustain"  id="q6_opt1" value="relaxer" autocomplete="off">
+<label class="button" for="q6_opt1">Cozy cafés, beachside meals, and buffets</label>
+<br>
+ <input type="radio"  name="sustain"  id="q6_opt2" value="cultural" autocomplete="off">
+<label class="button" for="q6_opt2">Authentic traditional dishes that hold the ancient history</label>
+<br>
+<input type="radio"  name="sustain"  id="q6_opt3" value="explorer" autocomplete="off">
+<label class="button" for="q6_opt3">Street food and hidden gems in the area.</label>
+<br>
+<input type="radio"  name="sustain"  id="q6_opt4" value="thrill-seeker" autocomplete="off">
+<label class="button" for="q6_opt4">Trying daring or unusual foods that pushes you out of your comfort zone.</label>
+<br>       
+<input type="radio"  name="sustain"  id="q6_opt5" value="planner" autocomplete="off">
+<label class="button" for="q6_opt5">Researching top-rated restaurants and making reservations for the best experience.</label>
+</div>
+</fieldset>
+<div class="form-nav">
+<form action="Survey Form Q5.html" id="suvery_back">
+ <input type="submit" name="previous" value="Previous" class="previous" id="formButtonNext">
+ </form>
+<form action="Survey Form Q7.html"  id="survey_next">
+ <input type="submit" value="Next">
+ </div>
+ </form>
+ </div>
+
+  <script src="saveAnswer.js"></script>
+  <script>
+    // Load saved answer if it exists
+    document.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('q6');
+  if (saved) {
+    document.querySelector(`input[value="${saved}"]`).checked = true;
+  }
+
+  document.getElementById('survey_next').addEventListener('submit', function(e) {
+    const selected = document.querySelector('input[name="sustain"]:checked');
+    if (selected) {
+      localStorage.setItem('q6', selected.value);
+    } else {
+      e.preventDefault();
+      alert('Please select an option!');
+    }
+  });
+});
+    </script>
+ <script>
+  const currentStep = 6; // Update for each page: 1, 2, 3, etc.
+
+  for (let i = 1; i <= 7; i++) {
+    const step = document.getElementById(`step${i}`);
+    if (i < currentStep) {
+      step.classList.add('completed');
+    } else if (i === currentStep) {
+      step.classList.add('current');
+    }
+
+    step.addEventListener('click', () => {
+      const file = step.getAttribute('data-file');
+      if (i !== currentStep) {
+        window.location.href = file;
+      }
+    });
+  }
+</script>
+<script>
+  document.querySelectorAll('.step').forEach(step => {
+    step.addEventListener('click', function() {
+      const targetStep = parseInt(this.dataset.step);
+
+      // Check previous answers up to target step - 1
+      let allPreviousAnswered = true;
+      for (let i = 1; i < targetStep; i++) {
+        if (!localStorage.getItem(`q${i}`)) {
+          allPreviousAnswered = false;
+          break;
+        }
+      }
+
+      if (allPreviousAnswered) {
+        window.location.href = this.dataset.file;
+      } else {
+        alert("Please answer previous questions before jumping ahead.");
+      }
+    });
+  });
+</script>
+</body>
+         </html>

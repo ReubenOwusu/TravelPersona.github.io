@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css"> 
+         <h3>The Explorer</h3>
+         <img src="https://images.pexels.com/photos/9159898/pexels-photo-9159898.jpeg" alt="Hong Kong Market"  class="result-image" width="600px" height="400px">
+        </head>
+        <body class="explorer-background">
+          <fieldset class="cardimage">
+    <div class="containerimage">
+      <p class="result-description">
+          You crave the unknown and thrive when you're off the beaten path. Whether it's wandering through mountain trails or stumbling upon hidden local gems, you're driven by discovery, not destination. For you, getting a little lost is part of the fun.</p>
+    </div>
+  </fieldset>
+            <form action="Survery Form.html" id="survey_back">
+ <input type="submit" value="Return to Homepage" >
+</form>
+ <script>
+    document.getElementById('survey_back').addEventListener('submit', function(e) {
+      e.preventDefault(); // Stop the default submit
+ localStorage.removeItem('q1');
+    localStorage.removeItem('q2');
+    localStorage.removeItem('q3');
+    localStorage.removeItem('q4');
+    localStorage.removeItem('q5');
+    localStorage.removeItem('q6');
+    localStorage.removeItem('q7');
+    window.location.href = 'Survey Form.html';
+
+      // Redirect to homepage
+      window.location.href = "Survey Form.html";
+    });
+  </script>
+</body>
+</html>

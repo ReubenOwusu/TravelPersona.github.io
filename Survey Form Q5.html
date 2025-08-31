@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+          <div class="header">
+            <h3>On-the-Road Habits</h3>
+            </div>
+
+    <div class="progress-bar">
+  <div class="step" id="step1" data-title="Travel Frequency & Style" data-file="Survey Form Q1.html"></div>
+  <div class="step" id="step2" data-title="Trip Planning Preferences" data-file="Survey Form Q2.html"></div>
+  <div class="step" id="step3" data-title="Destination Choices" data-file="Survey Form Q3.html"> </div>
+  <div class="step" id="step4" data-title="Packing & Preparation" data-file="Survey Form Q4.html"> </div>
+  <div class="step" id="step5" data-title="On-the-Road Habits" data-file="Survey Form Q5.html"> </div>
+  <div class="step" id="step6" data-title="Sustainability & Responsibility" data-file="Survey Form Q6.html"></div>
+  <div class="step" id="step7" data-title="Leisure & Activities" data-file="Survey Form Q7.html"> </div>
+</div>
+
+        </head>
+        <body class="q5-img">
+           <fieldset class="content">
+           <div class="container">
+           <h4>What is the goal of your trip?</h4>
+           <input type="radio"  name="road"  id="q5_opt1" value="relaxer" autocomplete="off">
+<label class="button" for="q5_opt1">To relax and recharge</label>
+<br>
+ <input type="radio"  name="road"  id="q5_opt2" value="cultural" autocomplete="off">
+<label class="button" for="q5_opt2">To try new foods, get exposed to new media, and meet locals</label>
+<br>
+<input type="radio"  name="road"  id="q5_opt3" value="thrill-seeker" autocomplete="off">
+<label class="button" for="q5_opt3">To challenge myself physically or mentally</label>
+<br>
+<input type="radio"  name="road"  id="q5_opt4" value="explorer" autocomplete="off">
+<label class="button" for="q5_opt4">To explore unfamiliar places and learn something new</label>
+<br>       
+<input type="radio"  name="road"  id="q5_opt5" value="planner" autocomplete="off">
+<label class="button" for="q5_opt5">To check off landmarks and stay on schedule</label>
+</div>
+</fieldset>
+<div class="form-nav">
+<form action="Survey Form Q4.html" id="suvery_back">
+ <input type="submit" name="previous" value="Previous" class="previous" id="formButtonNext">
+ </form>
+<form action="Survey Form Q6.html"  id="survey_next">
+ <input type="submit" value="Next">
+ </div>
+ </form>
+ </div>
+
+  <script src="saveAnswer.js"></script>
+  <script>
+    // Load saved answer if it exists
+    document.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('q5');
+  if (saved) {
+    document.querySelector(`input[value="${saved}"]`).checked = true;
+  }
+
+  document.getElementById('survey_next').addEventListener('submit', function(e) {
+    const selected = document.querySelector('input[name="road"]:checked');
+    if (selected) {
+      localStorage.setItem('q5', selected.value);
+    } else {
+      e.preventDefault();
+      alert('Please select an option!');
+    }
+  });
+});
+    </script>
+ <script>
+  const currentStep = 5; // Update for each page: 1, 2, 3, etc.
+
+  for (let i = 1; i <= 7; i++) {
+    const step = document.getElementById(`step${i}`);
+    if (i < currentStep) {
+      step.classList.add('completed');
+    } else if (i === currentStep) {
+      step.classList.add('current');
+    }
+
+    step.addEventListener('click', () => {
+      const file = step.getAttribute('data-file');
+      if (i !== currentStep) {
+        window.location.href = file;
+      }
+    });
+  }
+</script>
+<script>
+  document.querySelectorAll('.step').forEach(step => {
+    step.addEventListener('click', function() {
+      const targetStep = parseInt(this.dataset.step);
+
+      // Check previous answers up to target step - 1
+      let allPreviousAnswered = true;
+      for (let i = 1; i < targetStep; i++) {
+        if (!localStorage.getItem(`q${i}`)) {
+          allPreviousAnswered = false;
+          break;
+        }
+      }
+
+      if (allPreviousAnswered) {
+        window.location.href = this.dataset.file;
+      } else {
+        alert("Please answer previous questions before jumping ahead.");
+      }
+    });
+  });
+</script>
+</body>
+         </html>

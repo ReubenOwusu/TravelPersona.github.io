@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Leisure & Activities</title>
+</head>
+
+<body class="q7-img">
+  <div class="header">
+    <h3>Leisure & Activities</h3>
+  </div>
+
+  <!-- ✅ Progress Bar -->
+  <div class="progress-bar"> 
+    <div class="step" id="step1" data-title="Travel Frequency & Style" data-file="Survey Form Q1.html"></div>
+    <div class="step" id="step2" data-title="Trip Planning Preferences" data-file="Survey Form Q2.html"></div>
+    <div class="step" id="step3" data-title="Destination Choices" data-file="Survey Form Q3.html"></div>
+    <div class="step" id="step4" data-title="Packing & Preparation" data-file="Survey Form Q4.html"></div>
+    <div class="step" id="step5" data-title="On-the-Road Habits" data-file="Survey Form Q5.html"></div>
+    <div class="step" id="step6" data-title="Sustainability & Responsibility" data-file="Survey Form Q6.html"></div>
+    <div class="step" id="step7" data-title="Leisure & Activities" data-file="Survey Form Q7.html"></div>
+  </div>
+
+  <fieldset class="content">
+    <div class="container">
+      <h4>What does your perfect travel memory look like?</h4>
+      <input type="radio" name="response" id="q7_opt1" value="relaxer" autocomplete="off">
+      <label class="button" for="q7_opt1">Sipping a drink on a quiet beach with no obligations</label><br>
+
+      <input type="radio" name="response" id="q7_opt2" value="culture" autocomplete="off">
+      <label class="button" for="q7_opt2">Getting lost in local markets and hidden cafés</label><br>
+
+      <input type="radio" name="response" id="q7_opt3" value="explorer" autocomplete="off">
+      <label class="button" for="q7_opt3">Watching the sunrise alone after a long hike</label><br>
+
+      <input type="radio" name="response" id="q7_opt4" value="thrill-seeker" autocomplete="off">
+      <label class="button" for="q7_opt4">Diving off a cliff or racing down whitewater rapids</label><br>
+
+      <input type="radio" name="response" id="q7_opt5" value="planner" autocomplete="off">
+      <label class="button" for="q7_opt5">Moving from site to site with a perfectly planned schedule</label>
+    </div>
+  </fieldset>
+
+  <div class="form-nav">
+  <form action="Survey Form Q6.html" id="survey_back">
+    <input type="submit" name="previous" value="Previous" class="previous">
+  </form>
+
+  <form id="survey_final" action="Final Result Survey.html">
+    <input type="submit" value="See Your Result" class="next">
+  </form>
+</div>
+  <script>
+    const currentStep = 7;
+
+    // Mark steps as done/current
+    for (let i = 1; i <= 7; i++) {
+      const step = document.getElementById(`step${i}`);
+      if (i < currentStep) {
+        step.classList.add('completed');
+      } else if (i === currentStep) {
+        step.classList.add('current');
+      }
+
+      step.addEventListener('click', () => {
+        if (i === currentStep) return;
+
+        let canJump = true;
+        for (let j = 1; j < i; j++) {
+          if (!localStorage.getItem(`q${j}`)) {
+            canJump = false;
+            break;
+          }
+        }
+
+        if (canJump) {
+          window.location.href = step.getAttribute('data-file');
+        } else {
+          alert('Please complete previous questions first.');
+        }
+      });
+
+      // Tooltip hover
+      step.title = step.dataset.title;
+    }
+
+    // Restore Q7
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('q7');
+      if (saved) {
+        const radio = document.querySelector(`input[name="response"][value="${saved}"]`);
+        if (radio) radio.checked = true;
+      }
+    });
+
+    // Save Q7 and check all answers before result
+    document.getElementById('survey_final').addEventListener('submit', function(e) {
+      const selected = document.querySelector('input[name="response"]:checked');
+      if (selected) {
+        localStorage.setItem('q7', selected.value);
+      } else {
+        e.preventDefault();
+        alert('Please select an option for this question!');
+        return;
+      }
+
+      // Validate all answers present
+      for (let i = 1; i <= 7; i++) {
+        if (!localStorage.getItem(`q${i}`)) {
+          e.preventDefault();
+          alert('Please answer ALL questions before submitting.');
+          return;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
