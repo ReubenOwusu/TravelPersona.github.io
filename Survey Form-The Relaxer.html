@@ -2,10 +2,18 @@
 <html lang="en">
     <head>
       <meta charset="UTF-8">
-      <meta name="viewport content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css"> 
-         <h3>The Relaxer</h3>
-          <img src="https://images.pexels.com/photos/2535206/pexels-photo-2535206.jpeg" alt="Hong Kong Market" class="result-image" width="350px" height="250px">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+         <div class="polaroid-frame">
+<img src="images/pexels-photo-result-relaxer.webp" alt="Relaxing View" class="result-image" width="350" height="250">
+<h3>The Relaxer</h3>
+</div>
         </head>
         <body class="relax-background">
            <fieldset class="cardimage">
@@ -32,7 +40,38 @@
       window.location.href = "index.html";
     });
   </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+  // Create the date element
+  const dateElement = document.createElement('div');
+  dateElement.classList.add('date-stamp');
+  
+  // Append it to the polaroid frame
+  const polaroid = document.querySelector('.polaroid-frame');
+  if (polaroid) {
+    polaroid.appendChild(dateElement);
+  }
 
+  // Fetch and format the current date (e.g., "Sep 22, 2026")
+  const today = new Date();
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  const dateString = today.toLocaleDateString('en-US', options); 
+
+  let charIndex = 0;
+
+  // Function to type out the date slowly
+  function typeWriter() {
+    if (charIndex < dateString.length) {
+      dateElement.innerHTML += dateString.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeWriter, 150); // Adjust speed: 150ms per letter
+    }
+  }
+
+  // Starts the animation 500ms after the page loads
+  setTimeout(typeWriter, 500);
+});
+  </script>
 </body>
 
 </html>
